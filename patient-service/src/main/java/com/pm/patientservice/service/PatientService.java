@@ -1,5 +1,6 @@
 package com.pm.patientservice.service;
 
+import com.pm.patientservice.dto.PatientRequestDT0;
 import com.pm.patientservice.dto.PatientResponseDTO;
 import com.pm.patientservice.mapper.PatientMapper;
 import com.pm.patientservice.model.Patient;
@@ -17,6 +18,12 @@ public class PatientService {
         List<PatientResponseDTO> patientResponseDTO=patients.stream().map( patient -> PatientMapper.toDTO(patient)).toList();
 //        System.out.println("patients.stream().map( patient -> PatientMapper.toDTO(patient))  "+patients.stream().map( patient -> PatientMapper.toDTO(patient)));
         return patientResponseDTO;
+
+    }
+
+    public PatientResponseDTO createPatient(PatientRequestDT0 patientRequestDT0){
+        Patient newPatient=patientRepository.save(PatientMapper.toModel(patientRequestDT0));
+        return PatientMapper.toDTO(newPatient);
 
     }
 }
