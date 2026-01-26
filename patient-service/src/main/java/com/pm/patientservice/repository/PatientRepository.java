@@ -8,4 +8,8 @@ import java.util.UUID;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, UUID> {
+    boolean existsByEmail(String email); // JPA creates a query
+    // existsBy - Spring knows to generate an EXISTS query
+    // Email - Spring looks for a field named email in the Patient entity
+    // Result: SELECT EXISTS(SELECT 1 FROM patient WHERE email = ?)
 }
