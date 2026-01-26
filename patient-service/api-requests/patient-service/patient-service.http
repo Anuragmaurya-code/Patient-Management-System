@@ -1,0 +1,4 @@
+### GET all patients
+GET localhost:8082/patients
+
+###
